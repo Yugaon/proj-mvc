@@ -1,0 +1,39 @@
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\migrations\Version20210512221202.php:20	Avoid using short method names like Version20210512221202::up(). The configured minimum method name length is 3.
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\migrations\Version20210512221202.php:20	Avoid using short method names like Version20210512221202::up(). The configured minimum method name length is 3.
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\migrations\Version20210512221202.php:20	Avoid unused parameters such as '$schema'.
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\migrations\Version20210512221202.php:26	Avoid unused parameters such as '$schema'.
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\migrations\Version20210513002250.php:20	Avoid using short method names like Version20210513002250::up(). The configured minimum method name length is 3.
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\migrations\Version20210513002250.php:20	Avoid using short method names like Version20210513002250::up(). The configured minimum method name length is 3.
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\migrations\Version20210513002250.php:20	Avoid unused parameters such as '$schema'.
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\migrations\Version20210513002250.php:26	Avoid unused parameters such as '$schema'.
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\migrations\Version20210514220719.php:20	Avoid using short method names like Version20210514220719::up(). The configured minimum method name length is 3.
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\migrations\Version20210514220719.php:20	Avoid using short method names like Version20210514220719::up(). The configured minimum method name length is 3.
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\migrations\Version20210514220719.php:20	Avoid unused parameters such as '$schema'.
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\migrations\Version20210514220719.php:26	Avoid unused parameters such as '$schema'.
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\src\Controller\BaseController.php:18	The class BaseController has 15 public methods. Consider refactoring BaseController to keep number of public methods under 10.
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\src\Controller\BaseController.php:64	Avoid using static access to class '\Symfony\Component\HttpFoundation\Request' in method 'diceGames'.
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\src\Controller\BaseController.php:64	Avoid unused local variables such as '$request'.
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\src\Controller\BaseController.php:120	Avoid unused local variables such as '$session'.
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\src\Controller\BaseController.php:133	Avoid unused local variables such as '$messages'.
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\src\Controller\BaseController.php:137	Avoid using App\Controller\sizeof() function in for loops.
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\src\Controller\BaseController.php:152	Avoid unused local variables such as '$repository'.
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\src\Controller\BaseController.php:185	Avoid unused local variables such as '$session'.
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\src\Controller\BaseController.php:201	Avoid unused local variables such as '$session'.
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\src\Controller\BaseController.php:215	Avoid unused local variables such as '$session'.
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\src\Controller\BaseController.php:229	Avoid unused local variables such as '$session'.
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\src\Controller\ProductController.php:62	Avoid variables with short names like $id. Configured minimum length is 3.
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\src\DiceHand.php:34	Avoid using App\count() function in for loops.
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\src\Entity\Books.php:11	The property $link_pciture is not named in camelCase.
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\src\Entity\Books.php:18	Avoid variables with short names like $id. Configured minimum length is 3.
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\src\Entity\Books.php:62	The parameter $Code is not named in camelCase.
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\src\Entity\Books.php:62	The variable $Code is not named in camelCase.
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\src\Entity\Books.php:86	The parameter $link_pciture is not named in camelCase.
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\src\Entity\Books.php:86	The variable $link_pciture is not named in camelCase.
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\src\Entity\Product.php:18	Avoid variables with short names like $id. Configured minimum length is 3.
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\src\Entity\ScoreList.php:18	Avoid variables with short names like $id. Configured minimum length is 3.
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\src\Entity\ScoreList.php:45	The parameter $Rundor is not named in camelCase.
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\src\Entity\ScoreList.php:45	The variable $Rundor is not named in camelCase.
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\src\Kernel.php:14	Avoid assigning values to variables in if clauses and the like (line '22', column '27').
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\src\Kernel.php:27	Avoid assigning values to variables in if clauses and the like (line '34', column '27').
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\test\TESTING\FunctionsAndClassTest.php:52	Avoid using static access to class '\Symfony\Component\HttpFoundation\Request' in method 'testForGameTwentyOne'.
+C:\Users\Martin\dbwebb-kurser\mvc\me\ci\app\test\TESTING\FunctionsAndClassTest.php:73	Avoid using static access to class '\Symfony\Component\HttpFoundation\Request' in method 'testForDiceHandSecond'.

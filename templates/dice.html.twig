@@ -1,0 +1,12 @@
+{% include 'header.html.twig' %}
+        <h3>Let's play 21</h3>
+        <h4>Remember, to be qualified to get on the highscore you need to play atleast 5 turns before pressing "RESET SCORE TABLE"</h4>
+        <br>
+        <h4>You are only eligible to get on the highscore if you play with one die</h4>
+          <form action="21_1" method="POST">
+            <input class="button" type="submit" value="One die">
+          </form>
+          <form action="21_2" method="POST">
+            <input class="button" type="submit" value="Two dice">
+          </form>
+{% include 'footer.html.twig' %}

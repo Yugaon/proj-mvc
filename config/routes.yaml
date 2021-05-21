@@ -1,0 +1,63 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+index:
+    path: /
+    controller: App\Controller\BaseController::index
+
+dice-game:
+    path: /dice-game
+    controller: App\Controller\BaseController::DiceGames
+
+dice-try:
+    path: /dice-try
+    controller: App\Controller\BaseController::DiceTry
+
+books-index:
+    path: /books-index
+    controller: App\Controller\BaseController::Books
+
+highscore:
+    path: /highscore
+    controller: App\Controller\BaseController::highscore
+
+21_1:
+    path: /21_1
+    controller: App\Controller\BaseController::DiceOneGame
+
+21_2:
+    path: /21_2
+    controller: App\Controller\BaseController::DiceTwoGame
+
+roll:
+    path: /roll
+    controller: App\Controller\BaseController::RollDice
+
+reset:
+    path: /reset
+    controller: App\Controller\BaseController::Reset
+
+stop:
+    path: /stop
+    controller: App\Controller\BaseController::stop
+
+resetscore:
+    path: /resetscore
+    controller: App\Controller\BaseController::ResetScore
+
+rollTwo:
+    path: /rollTwo
+    controller: App\Controller\BaseController::RollTwoDice
+
+resetTwo:
+    path: /resetTwo
+    controller: App\Controller\BaseController::ResetTwo
+
+stopTwo:
+    path: /stopTwo
+    controller: App\Controller\BaseController::stopTwo
+
+resetscoreTwo:
+    path: /resetscoreTwo
+    controller: App\Controller\BaseController::ResetScoreTwo

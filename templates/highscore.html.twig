@@ -1,0 +1,22 @@
+{% include 'header.html.twig' %}
+<h3>Highscore</h3>
+<table>
+<tr>
+<th>Plats</th>
+<th>Id</th>
+<th>Rundor</th>
+<th>Vunnit</th>
+<th>Procent</th>
+</tr>
+<tr>
+{% for key,variables in scorelist %}
+<th>{{key + 1}}</th>
+<th>{{ variables.id }}</th>
+<th>{{ variables.rundor }}</th>
+<th>{{ variables.vunnit }}</th>
+<th>{{ variables.procent }}</th>
+</tr>
+{% endfor %}
+
+</table>
+{% include 'footer.html.twig' %}

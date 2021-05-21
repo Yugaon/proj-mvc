@@ -1,0 +1,39 @@
+{% include 'header.html.twig' %}
+        <h1>Books</h1>
+
+        <table>
+        <tr>
+        <th>Id</th>
+        <th>Titel</th>
+        <th>Code</th>
+        <th>Author</th>
+        <th>Picture</th>
+        </tr>
+        <tr>
+        {% for variables in book1 %}
+        <th>{{ variables.id }}</th>
+        <th>{{ variables.titel }}</th>
+        <th>{{ variables.code }}</th>
+        <th>{{ variables.author }}</th>
+        <th><img src="{{ variables.LinkPciture }}" width="200" height="300"></th>
+        {% endfor %}
+        </tr
+        <tr>
+        {% for variables in book2 %}
+        <th>{{ variables.id }}</th>
+        <th>{{ variables.titel }}</th>
+        <th>{{ variables.code }}</th>
+        <th>{{ variables.author }}</th>
+        <th><img src="{{ variables.LinkPciture }}" width="200" height="300"></th>
+        {% endfor %}
+        </tr>
+        <tr>
+        {% for variables in book3 %}
+        <th>{{ variables.id }}</th>
+        <th>{{ variables.titel }}</th>
+        <th>{{ variables.code }}</th>
+        <th>{{ variables.author }}</th>
+        <th><img src="{{ variables.LinkPciture }}" width="200" height="300"></th>
+        {% endfor %}
+        </tr>
+        </table>

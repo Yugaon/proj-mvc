@@ -1,0 +1,47 @@
+
+{% include 'header.html.twig' %}
+
+<form action="roll" method="post">
+    <input class="button" type="submit" name="test1" id="test1" value="ROLL" /><br/>
+</form>
+
+<form action="reset" method="post">
+    <input class="button" type="submit" name="reset" id="reset" value="RESET" /><br/>
+</form>
+
+<form action="stop" method="post">
+    <input class="button" type="submit" name="stop" id="stop" value="STOP" /><br/>
+</form>
+
+<form action="resetscore" method="post">
+    <input class="button" type="submit" name="score" id="score" value="RESET SCORE TABLE" /><br/>
+</form>
+
+<table>
+<tr>
+<th>Roll</th>
+<th>Total</th>
+</tr>
+<tr>
+  <th>{{ message }}</th>
+  <th>{{ totale }}</th>
+</tr>
+
+</table>
+<h3> {{ realmessage }} </h3>
+<table>
+{% for key,value in historik %}
+
+    <tr>
+    <th>Vinnare</th>
+    <th>Runda</th>
+    </tr>
+    <tr>
+      <th>{{ historik[key]['vinnare'] }} </th>
+      <th>{{ historik[key]['runda'] }}</th>
+    </tr>
+
+{% endfor %}
+    </table>
+
+{% include 'footer.html.twig' %}
