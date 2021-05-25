@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use App\GameTwentyOne;
 use App\DiceHand;
+use App\Money;
 use App\Entity\Books;
 use App\Entity\ScoreList;
 use Doctrine\ORM\EntityManagerInterface;
@@ -64,6 +65,9 @@ class BaseController extends AbstractController
         $request = Request::createFromGlobals();
         $session = new session();
         $session->set('total', 0);
+        $session->set('yourmoney', 50);
+        $session->set('computermoney', 50);
+
         return $this->render('dice.html.twig', [
             'message' => "Hello World in view",
         ]);
@@ -87,6 +91,10 @@ class BaseController extends AbstractController
             'totale' => null,
             'realmessage' => null,
             'historik' => null,
+            'yourmoney' => "You have " . $session->get('yourmoney') . " to bet",
+            'computermoney' => "The computer has " . $session->get('computermoney') . " to bet",
+            'yourbet' => null,
+            'yourmoneynumber' => $session->get('yourmoney'),
         ]);
     }
 
@@ -100,6 +108,10 @@ class BaseController extends AbstractController
         'totale' => $object->getTotal($request),
         'realmessage' => $object->Message(),
         'historik' => $object->getHistorik($request),
+        'yourmoney' => "You have " . $session->get('yourmoney') . " to bet",
+        'computermoney' => "The computer has " . $session->get('computermoney') . " to bet",
+        'yourbet' => null,
+        'yourmoneynumber' => $session->get('yourmoney'),
         ]);
     }
 
@@ -107,11 +119,39 @@ class BaseController extends AbstractController
     {
         $object = new GameTwentyOne(6);
         $object->reset($request);
+        $session = $request->getSession();
         return $this->render('21_1.html.twig', [
             'message' => null,
             'totale' => null,
             'realmessage' => null,
             'historik' => $object->getHistorik($request),
+            'yourmoney' => "You have " . $session->get('yourmoney') . " to bet",
+            'computermoney' => "The computer has " . $session->get('computermoney') . " to bet",
+            'yourbet' => null,
+            'yourmoneynumber' => $session->get('yourmoney'),
+        ]);
+    }
+
+    public function betting(Request $request): Response
+    {
+        $object = new GameTwentyOne(6);
+        $money = new Money();
+        $object->reset($request);
+        $session = $request->getSession();
+        $bet = $request->get('bet');
+        $session->set('bet', $bet);
+        $money->moneyMinus($request, $session->get('bet'));
+        return $this->render('21_1.html.twig', [
+            'message' => null,
+            'totale' => null,
+            'realmessage' => null,
+            'historik' => $object->getHistorik($request),
+            'yourmoney' => "You have " . $session->get('yourmoney') . " to bet",
+            'computermoney' => "The computer has " . $session->get('computermoney') . " to bet",
+            'yourbet' => $money->betMessage($session->get('bet')),
+            'yourmoneynumber' => $session->get('yourmoney'),
+
+
         ]);
     }
 
@@ -125,6 +165,10 @@ class BaseController extends AbstractController
             'totale' => null,
             'realmessage' => $object->Message(),
             'historik' => $object->getHistorik($request),
+            'yourmoney' => "You have " . $session->get('yourmoney') . " to bet",
+            'computermoney' => "The computer has " . $session->get('yourmoney') . " to bet",
+            'yourbet' => null,
+            'yourmoneynumber' => $session->get('yourmoney'),
         ]);
     }
 
@@ -162,6 +206,10 @@ class BaseController extends AbstractController
           'totale' => $object->getTotal($request),
           'realmessage' => null,
           'historik' => $object->getHistorik($request),
+          'yourmoney' => "You have " . $session->get('yourmoney') . " to bet",
+          'computermoney' => "The computer has " . $session->get('yourmoney') . " to bet",
+          'yourbet' => null,
+          'yourmoneynumber' => $session->get('yourmoney'),
         ]);
     }
 

@@ -22,6 +22,10 @@ highscore:
     path: /highscore
     controller: App\Controller\BaseController::highscore
 
+betting:
+    path: /betting
+    controller: App\Controller\BaseController::betting
+
 21_1:
     path: /21_1
     controller: App\Controller\BaseController::DiceOneGame
