@@ -19,7 +19,7 @@
 
 <form action="betting" method="get">
     <input type="number" name="bet" id="score" min="1" max="{{ yourmoneynumber }}" value="1" />
-    <input class="button" type="submit"><br>
+    <input class="button" type="Submit" value="BET"><br>
 </form>
 
 <table>
@@ -37,6 +37,7 @@
 <h3> {{ yourmoney }} </h3>
 <h3> {{ computermoney }} </h3>
 <h3> {{ yourbet }} </h3>
+<h3> {{ invalidbetting }} </h3>
 <table>
 {% for key,value in historik %}
 

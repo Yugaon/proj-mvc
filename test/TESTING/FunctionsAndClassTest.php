@@ -61,10 +61,16 @@ class FunctionsAndClass extends TestCase
         $this->assertEquals($dice->roll($request), $dice->getLastRoll());
         $session->set('total', 22);
         $this->assertEquals($dice->roll($request), $dice->getLastRoll());
+        $this->assertEquals($dice->roll($request), $dice->getLastRoll());
+        $this->assertEquals($dice->roll($request), $dice->getLastRoll());
+        $this->assertEquals($dice->roll($request), $dice->getLastRoll());
         $this->assertEquals($session->get('total'), $dice->getTotal($request));
         $this->assertEquals($session->get('historik'), $dice->getHistorik($request));
         $this->assertEmpty($dice->resetScore($request));
         $dice->computer($request);
+        $this->assertEquals($dice->computer($request), $dice->stop($request));
+        $this->assertEquals($dice->computer($request), $dice->stop($request));
+        $this->assertEquals($dice->computer($request), $dice->stop($request));
         $this->assertEquals($dice->computer($request), $dice->stop($request));
     }
 
@@ -83,5 +89,20 @@ class FunctionsAndClass extends TestCase
         $this->assertEquals($session->get('historik'), $dice->getHistorik($request));
         $dice->computer($request);
         $this->assertEquals($dice->computer($request), $dice->stop($request));
+    }
+
+    public function testForMoney()
+    {
+        $request = Request::createFromGlobals();
+        $session = new Session(new MockArraySessionStorage());
+        $request->setSession($session);
+        $session->set('yourmoney', 2);
+        $dice = new Money(6);
+        $this->assertInstanceOf("\App\Money", $dice);
+
+        $this->assertEquals($dice->moneyPlus($request, 2), 2);
+        $this->assertEquals($dice->moneyMinusComputer($request, 2), -2);
+        $this->assertEquals($dice->moneyMinus($request, 2), 0);
+        $this->assertEquals($dice->betMessage(5), "You are now betting " . 5);
     }
 }

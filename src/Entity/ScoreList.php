@@ -32,6 +32,16 @@ class ScoreList
      */
     private $procent;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $poeng;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $totalRundor;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +79,30 @@ class ScoreList
     public function setProcent(int $procent): self
     {
         $this->procent = $procent;
+
+        return $this;
+    }
+
+    public function getPoeng(): ?int
+    {
+        return $this->poeng;
+    }
+
+    public function setPoeng(?int $poeng): self
+    {
+        $this->poeng = $poeng;
+
+        return $this;
+    }
+
+    public function getTotalRundor(): ?int
+    {
+        return $this->totalRundor;
+    }
+
+    public function setTotalRundor(?int $totalRundor): self
+    {
+        $this->totalRundor = $totalRundor;
 
         return $this;
     }

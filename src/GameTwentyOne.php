@@ -26,38 +26,7 @@ class GameTwentyOne
     public function roll(Request $request)
     {
         $session = $request->getSession();
-
-        if ($session->get('total') == 21) {
-            $this->message = 'Congratulations you won!';
-            $historia = "Du";
-            $nyrunda = $session->get('runda');
-            $session->set('runda', $nyrunda + 1);
-            $runda = $session->get('runda');
-            $historik = array(
-              'vinnare' => $historia,
-              'runda' => $runda
-            );
-            $innanhistorik = $session->get('historik');
-            $innanhistorik[$runda] = $historik;
-            $session->set('historik', $innanhistorik);
-
-            $this->reset($request);
-        } elseif ($session->get('total') > 21) {
-            $this->message = 'You lost play again!';
-            $historia = "Computer";
-            $nyrunda = $session->get('runda');
-            $session->set('runda', $nyrunda + 1);
-            $runda = $session->get('runda');
-            $historik = array(
-              'vinnare' => $historia,
-              'runda' => $runda
-            );
-            $innanhistorik = $session->get('historik');
-            $innanhistorik[$runda] = $historik;
-            $session->set('historik', $innanhistorik);
-            $this->reset($request);
-        }
-
+        $calculation = new Money();
         $this->lastroll = random_int(1, $this->sides);
         $total = $session->get('total');
         $session->set('total', $total + $this->lastroll);
@@ -76,6 +45,10 @@ class GameTwentyOne
             $innanhistorik[$runda] = $historik;
             $session->set('historik', $innanhistorik);
 
+            $betting = $session->get('bet') * 2;
+            $betting = $betting + $session->get('yourmoney');
+            $session->set('yourmoney', $betting);
+
             $this->reset($request);
         } elseif ($session->get('total') > 21) {
             $this->message = 'You lost play again!';
@@ -90,6 +63,11 @@ class GameTwentyOne
             $innanhistorik = $session->get('historik');
             $innanhistorik[$runda] = $historik;
             $session->set('historik', $innanhistorik);
+
+            $betting = $session->get('bet') * 2;
+            $betting = $session->get('computermoney') + $betting;
+            $session->set('computermoney', $betting);
+
             $this->reset($request);
         }
         return $this->lastroll;
@@ -110,6 +88,8 @@ class GameTwentyOne
     {
         $session = $request->getSession();
         $session->set('total', 0);
+        $session->set('bet', 0);
+        $session->set('invalid', " ");
     }
 
     public function resetScore($request)
@@ -117,6 +97,8 @@ class GameTwentyOne
         $session = $request->getSession();
         $session->set('historik', []);
         $session->set('runda', 0);
+        $session->set('computermoney', 150);
+        $session->set('yourmoney', 50);
     }
 
     public function message()
@@ -128,6 +110,7 @@ class GameTwentyOne
     {
         $session = $request->getSession();
         $computerValue = 0;
+        $calculation = new Money();
         while ($computerValue < 21 or $computerValue == $session->get('total')) {
             $this->lastrollcomputer = random_int(1, $this->sides);
             $computerValue = $computerValue + $this->lastrollcomputer;
@@ -142,9 +125,17 @@ class GameTwentyOne
                   'vinnare' => $historia,
                   'runda' => $runda
                 );
+
                 $innanhistorik = $session->get('historik');
                 $innanhistorik[$runda] = $historik;
+
+                $betting = $session->get('bet') * 2;
+                $betting = $session->get('computermoney') + $betting;
+                $session->set('computermoney', $betting);
+
                 $session->set('historik', $innanhistorik);
+                $session->set('invalid', " ");
+                $session->set('bet', 0);
                 break;
             } else if ($computerValue > 22 and $computerValue != 21) {
                   $session->set('total', 0);
@@ -159,7 +150,14 @@ class GameTwentyOne
                   );
                   $innanhistorik = $session->get('historik');
                   $innanhistorik[$runda] = $historik;
+
+                  $betting = $session->get('bet') * 2;
+                  $betting = $betting + $session->get('yourmoney');
+                  $session->set('yourmoney', $betting);
+
                   $session->set('historik', $innanhistorik);
+                  $session->set('invalid', " ");
+                  $session->set('bet', 0);
                   break;
             }
         }

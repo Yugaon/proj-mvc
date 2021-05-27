@@ -66,5 +66,9 @@ class Entitytest extends TestCase
         $this->assertEquals($dice->setRundor(1), $dice);
         $this->assertEmpty($dice->getProcent());
         $this->assertEquals($dice->setProcent(1), $dice);
+        $this->assertEmpty($dice->getPoeng());
+        $this->assertEquals($dice->setPoeng(1), $dice);
+        $this->assertEmpty($dice->getTotalRundor());
+        $this->assertEquals($dice->setTotalRundor(1), $dice);
     }
 }

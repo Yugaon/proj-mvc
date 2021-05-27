@@ -7,6 +7,7 @@
 <th>Rundor</th>
 <th>Vunnit</th>
 <th>Procent</th>
+<th>Poäng</th>
 </tr>
 <tr>
 {% for key,variables in scorelist %}
@@ -15,8 +16,46 @@
 <th>{{ variables.rundor }}</th>
 <th>{{ variables.vunnit }}</th>
 <th>{{ variables.procent }}</th>
+<th>{{ variables.poeng }}</th>
 </tr>
 {% endfor %}
 
+
+
+<table>
+<h3>Totalt Spelat</h3>
+<tr>
+  <th>Spelade gånger</th>
+  <th>Totala pengar samlade</th>
+  <th>Hur många rundor vunnit. Winrate</th>
+  </tr>
+<tr>
+{% set k = totalrundor %}
+<tr>
+<th>{% for i in range(1, k) %}
+    |
+{% endfor %}</th>
+{% set m = summa/10 %}
+<th>
+{% for i in range(1, m) %}
+    X
+{% endfor %}</th>
+
+{% set p = procent %}
+<th>
+{% for i in range(1, p) %}
+    %
+{% endfor %}</th>
+</tr>
+<tr>
+<th>{{ totalrundor }}</th>
+<th>{{ summa }}</th>
+<th>{{ procent }}% </th>
+</tr>
 </table>
+<h4>Do you think you have what it takes to get a highscore?</h4>
+<form action="21_1" method="POST">
+  <input class="button" type="submit" value="Play!">
+</form>
+
 {% include 'footer.html.twig' %}

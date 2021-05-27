@@ -30,14 +30,35 @@ class BaseController extends AbstractController
 
     public function highscore(): Response
     {
+        $product = new ScoreList();
         $repository = $this->getDoctrine()->getRepository(ScoreList::class);
         $products = $repository->findBy(
             [],
-            ['procent' => 'DESC'],
+            ['poeng' => 'DESC'],
             10
         );
+        $count = $repository->createQueryBuilder('u')
+        ->select('count(u.procent)')
+        ->getQuery()
+        ->getSingleScalarResult();
+        $sum = $repository->createQueryBuilder('u')
+        ->select('sum(u.poeng)')
+        ->getQuery()
+        ->getSingleScalarResult();
+        $sumrundor = $repository->createQueryBuilder('u')
+        ->select('sum(u.Rundor)')
+        ->getQuery()
+        ->getSingleScalarResult();
+        $sumvunnit = $repository->createQueryBuilder('u')
+        ->select('sum(u.vunnit)')
+        ->getQuery()
+        ->getSingleScalarResult();
+        $procent = ($sumvunnit/$sumrundor * 100);
         return $this->render('highscore.html.twig', [
             'scorelist' => $products,
+            'totalrundor' => $count,
+            'summa' => $sum,
+            'procent' => round($procent),
         ]);
     }
 
@@ -66,7 +87,9 @@ class BaseController extends AbstractController
         $session = new session();
         $session->set('total', 0);
         $session->set('yourmoney', 50);
-        $session->set('computermoney', 50);
+        $session->set('computermoney', 150);
+        $session->set('bet', 0);
+        $session->set('invalid', " ");
 
         return $this->render('dice.html.twig', [
             'message' => "Hello World in view",
@@ -95,6 +118,8 @@ class BaseController extends AbstractController
             'computermoney' => "The computer has " . $session->get('computermoney') . " to bet",
             'yourbet' => null,
             'yourmoneynumber' => $session->get('yourmoney'),
+            'computermoneynumber' => $session->get('computermoney'),
+            'invalidbetting' => null,
         ]);
     }
 
@@ -103,6 +128,7 @@ class BaseController extends AbstractController
         $session = $request->getSession();
         $session->set('idScore', 0);
         $object = new GameTwentyOne(6);
+        $money = new Money();
         return $this->render('21_1.html.twig', [
         'message' => $object->roll($request),
         'totale' => $object->getTotal($request),
@@ -110,8 +136,10 @@ class BaseController extends AbstractController
         'historik' => $object->getHistorik($request),
         'yourmoney' => "You have " . $session->get('yourmoney') . " to bet",
         'computermoney' => "The computer has " . $session->get('computermoney') . " to bet",
-        'yourbet' => null,
+        'yourbet' => $money->betMessage($session->get('bet')),
         'yourmoneynumber' => $session->get('yourmoney'),
+        'computermoneynumber' => $session->get('computermoney'),
+        'invalidbetting' => null,
         ]);
     }
 
@@ -129,18 +157,31 @@ class BaseController extends AbstractController
             'computermoney' => "The computer has " . $session->get('computermoney') . " to bet",
             'yourbet' => null,
             'yourmoneynumber' => $session->get('yourmoney'),
+            'computermoneynumber' => $session->get('computermoney'),
+            'invalidbetting' => null,
         ]);
     }
 
     public function betting(Request $request): Response
     {
+
         $object = new GameTwentyOne(6);
         $money = new Money();
         $object->reset($request);
         $session = $request->getSession();
+        $session->set('invalid', " ");
         $bet = $request->get('bet');
         $session->set('bet', $bet);
-        $money->moneyMinus($request, $session->get('bet'));
+        if ($session->get('bet') <= $session->get('computermoney')) {
+            $money->moneyMinusComputer($request, $session->get('bet'));
+            $money->moneyMinus($request, $session->get('bet'));
+        }
+        else {
+            $session->set('bet', 0);
+            $session->set('invalid',  "Invalid betting number, to high?");
+        }
+
+
         return $this->render('21_1.html.twig', [
             'message' => null,
             'totale' => null,
@@ -150,6 +191,8 @@ class BaseController extends AbstractController
             'computermoney' => "The computer has " . $session->get('computermoney') . " to bet",
             'yourbet' => $money->betMessage($session->get('bet')),
             'yourmoneynumber' => $session->get('yourmoney'),
+            'computermoneynumber' => $session->get('computermoney'),
+            'invalidbetting' => $session->get('invalid'),
 
 
         ]);
@@ -166,9 +209,11 @@ class BaseController extends AbstractController
             'realmessage' => $object->Message(),
             'historik' => $object->getHistorik($request),
             'yourmoney' => "You have " . $session->get('yourmoney') . " to bet",
-            'computermoney' => "The computer has " . $session->get('yourmoney') . " to bet",
+            'computermoney' => "The computer has " . $session->get('computermoney') . " to bet",
             'yourbet' => null,
             'yourmoneynumber' => $session->get('yourmoney'),
+            'computermoneynumber' => $session->get('computermoney'),
+            'invalidbetting' => null,
         ]);
     }
 
@@ -192,6 +237,7 @@ class BaseController extends AbstractController
             $product->setVunnit($count);
             $rakna = $session->get('runda');
             $product->setProcent(($count / $rakna) * 100);
+            $product->setPoeng($session->get('yourmoney'));
             $session->set('idScore', $product->getId());
             $repository = $this->getDoctrine()->getRepository(ScoreList::class);
             $entityManager->persist($product);
@@ -207,9 +253,11 @@ class BaseController extends AbstractController
           'realmessage' => null,
           'historik' => $object->getHistorik($request),
           'yourmoney' => "You have " . $session->get('yourmoney') . " to bet",
-          'computermoney' => "The computer has " . $session->get('yourmoney') . " to bet",
+          'computermoney' => "The computer has " . $session->get('computermoney') . " to bet",
           'yourbet' => null,
           'yourmoneynumber' => $session->get('yourmoney'),
+          'computermoneynumber' => $session->get('computermoney'),
+          'invalidbetting' => null,
         ]);
     }
 

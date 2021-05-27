@@ -9,7 +9,7 @@ class Money
     public $betmessage;
     private $sides;
 
-    public function moneyPlus(Request $request, $moneyToAdd)
+    public function moneyPlus($request, $moneyToAdd)
     {
         $session = $request->getSession();
         $currentMoney = $session->get('yourmoney');
@@ -24,6 +24,15 @@ class Money
         $currentMoney = $session->get('yourmoney');
         $currentMoney = $currentMoney - $moneyToLose;
         $session->set('yourmoney', $currentMoney);
+        return $currentMoney;
+    }
+
+    public function moneyMinusComputer($request, $moneyToLose)
+    {
+        $session = $request->getSession();
+        $currentMoney = $session->get('computermoney');
+        $currentMoney = $currentMoney - $moneyToLose;
+        $session->set('computermoney', $currentMoney);
         return $currentMoney;
     }
 
