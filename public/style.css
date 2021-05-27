@@ -75,9 +75,7 @@ a:visited {
     margin: 0;
     border: 0;
     padding: 15px;
-    position:absolute;
     width:100%;
-    bottom:0px;
     border: 1px solid black;
 }
 

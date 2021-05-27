@@ -53,7 +53,7 @@ class BaseController extends AbstractController
         ->select('sum(u.vunnit)')
         ->getQuery()
         ->getSingleScalarResult();
-        $procent = ($sumvunnit/$sumrundor * 100);
+        $procent = ($sumvunnit / $sumrundor * 100);
         return $this->render('highscore.html.twig', [
             'scorelist' => $products,
             'totalrundor' => $count,
@@ -175,10 +175,9 @@ class BaseController extends AbstractController
         if ($session->get('bet') <= $session->get('computermoney')) {
             $money->moneyMinusComputer($request, $session->get('bet'));
             $money->moneyMinus($request, $session->get('bet'));
-        }
-        else {
+        } else {
             $session->set('bet', 0);
-            $session->set('invalid',  "Invalid betting number, to high?");
+            $session->set('invalid', "Invalid betting number, to high?");
         }
 
 

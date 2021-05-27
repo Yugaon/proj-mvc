@@ -1,0 +1,32 @@
+ ------ -------------------------------------------------------------------------------------------------- 
+ [32m Line [39m [32m src\Controller\BaseController.php                                                                [39m 
+ ------ -------------------------------------------------------------------------------------------------- 
+[39;49m  40     Call to an undefined method[39;49m[39;49m                                                                       [39;49m
+[39;49m         [39;49mDoctrine\Persistence\ObjectRepository<App\Entity\ScoreList>::createQueryBuilder().                
+[39;49m  44     Call to an undefined method[39;49m[39;49m                                                                       [39;49m
+[39;49m         [39;49mDoctrine\Persistence\ObjectRepository<App\Entity\ScoreList>::createQueryBuilder().                
+[39;49m  48     Call to an undefined method[39;49m[39;49m                                                                       [39;49m
+[39;49m         [39;49mDoctrine\Persistence\ObjectRepository<App\Entity\ScoreList>::createQueryBuilder().                
+[39;49m  52     Call to an undefined method[39;49m[39;49m                                                                       [39;49m
+[39;49m         [39;49mDoctrine\Persistence\ObjectRepository<App\Entity\ScoreList>::createQueryBuilder().                
+  67     Call to an undefined method Doctrine\Persistence\ObjectRepository<App\Entity\Books>::findById().  
+  70     Call to an undefined method Doctrine\Persistence\ObjectRepository<App\Entity\Books>::findById().  
+  73     Call to an undefined method Doctrine\Persistence\ObjectRepository<App\Entity\Books>::findById().  
+ ------ -------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------------------- 
+ [32m Line [39m [32m src\Controller\ProductController.php                                                               [39m 
+ ------ ---------------------------------------------------------------------------------------------------- 
+  64     Call to an undefined method Doctrine\Persistence\ObjectRepository<App\Entity\Product>::findById().  
+ ------ ---------------------------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------- 
+ [32m Line [39m [32m src\Money.php                                           [39m 
+ ------ --------------------------------------------------------- 
+  41     Access to an undefined property App\Money::$betMessage.  
+ ------ --------------------------------------------------------- 
+
+[37;41m                                                                                                                [39;49m
+[37;41m [ERROR] Found 9 errors                                                                                         [39;49m
+[37;41m                                                                                                                [39;49m
+

@@ -1,0 +1,11 @@
+phpcpd 6.0.3 by Sebastian Bergmann.
+
+Found 1 clones with 17 duplicated lines in 2 files:
+
+  - C:\Users\Martin\dbwebb-kurser\mvc\me\proj\src\DiceHand.php:120-137 (17 lines)
+    C:\Users\Martin\dbwebb-kurser\mvc\me\proj\src\GameTwentyOne.php:114-131
+
+1.29% duplicated lines out of 1318 total lines of code.
+Average size of duplication is 17 lines, largest clone has 17 of lines
+
+Time: 00:00.048, Memory: 4.00 MB
